@@ -15,24 +15,20 @@ X[:, 1:15] = imputer.transform(X[:, 1:15])
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.4, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
-
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
 #PCA
 from sklearn.decomposition import PCA, KernelPCA
+
 kernel_pca = KernelPCA(
-    n_components=5,          # do NOT leave None
-    kernel="sigmoid",
-    gamma=0.001,             # MUST be small
-    coef0=1,
-    remove_zero_eig=True
+    n_components=None, kernel="rbf", gamma=10, fit_inverse_transform=True, alpha=0.1
 )
 
 X_train_kpca = kernel_pca.fit_transform(X_train)
@@ -53,7 +49,8 @@ y_pred = classifier.predict(X_test_kpca)
 from sklearn.metrics import confusion_matrix, accuracy_score
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
-accuracy_score(y_test, y_pred)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
 
 
 from sklearn.metrics import classification_report
@@ -94,8 +91,8 @@ acc = (tp+tn)/(tp+fp+fn+tn)
 if tp>0:
   precision=float(tp)/(tp+fp)
   recall=float(tp)/(tp+fn)
-  
-print ('\n confussion matrix for Logistic Regression Classifier:\n',confusion_matrix(y_test,  y_pred))
+
+print('\nConfusion matrix for AdaBoost Classifier:\n',confusion_matrix(y_test,  y_pred))  
 print('\nTrue Positive : %d'%(tp))
 print('\nTrue Negative : %d'%(tn))
 print('\nFalse Positive : %d'%(fp))
@@ -107,6 +104,6 @@ print('\nNegative predictive value : %f'%(npv))
 print('\nFall out or false positive rate: %f' %(fpr))
 print('\nFalse negative rate : %f' %(fnr))
 print('\nFalse discovery rate : %f' %(fdr))
-print('\nPrecision : %f' %(ppv))
-print('\nRecall : %f' %(tpr))
+print('\nPrecision : %f' %precision)
+print('\nRecall : %f' %recall)
 print('\nOverall accuracy for Classifier : %f' %(acc))
