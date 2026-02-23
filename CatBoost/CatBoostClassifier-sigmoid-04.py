@@ -94,7 +94,7 @@ if tp>0:
   precision=float(tp)/(tp+fp)
   recall=float(tp)/(tp+fn)
 
-print('\nConfusion matrix for AdaBoost Classifier:\n',confusion_matrix(y_test,  y_pred))  
+print('\nConfusion matrix for CatBoost Classifier:\n',confusion_matrix(y_test,  y_pred))  
 print('\nTrue Positive : %d'%(tp))
 print('\nTrue Negative : %d'%(tn))
 print('\nFalse Positive : %d'%(fp))
