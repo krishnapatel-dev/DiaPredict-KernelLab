@@ -95,7 +95,7 @@ if tp>0:
   precision=float(tp)/(tp+fp)
   recall=float(tp)/(tp+fn)
   
-print ('\n confussion matrix for Logistic Regression Classifier:\n',confusion_matrix(y_test,  y_pred))
+print ('\n confussion matrix for AdaBoostClassifier:\n',confusion_matrix(y_test,  y_pred))
 print('\nTrue Positive : %d'%(tp))
 print('\nTrue Negative : %d'%(tn))
 print('\nFalse Positive : %d'%(fp))

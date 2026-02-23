@@ -28,7 +28,12 @@ X_test = sc.transform(X_test)
 from sklearn.decomposition import PCA, KernelPCA
 
 kernel_pca = KernelPCA(
-    n_components=None, kernel="poly", gamma=10, fit_inverse_transform=True, alpha=0.1
+    n_components=5, 
+    kernel="poly",
+    degree=3,
+    gamma=None,
+    coef0=1,
+    fit_inverse_transform=False
 )
 
 X_train_kpca = kernel_pca.fit_transform(X_train)

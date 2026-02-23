@@ -15,7 +15,7 @@ X[:, 1:15] = imputer.transform(X[:, 1:15])
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.6, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.4, random_state = 0)
 
 
 # Feature Scaling
@@ -95,7 +95,7 @@ if tp>0:
   precision=float(tp)/(tp+fp)
   recall=float(tp)/(tp+fn)
   
-print ('\n confussion matrix for Logistic Regression Classifier:\n',confusion_matrix(y_test,  y_pred))
+print ('\n confussion matrix for AdaBoostClassifier:\n',confusion_matrix(y_test,  y_pred))
 print('\nTrue Positive : %d'%(tp))
 print('\nTrue Negative : %d'%(tn))
 print('\nFalse Positive : %d'%(fp))
